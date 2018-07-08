@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - BAS_ASP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="@ViewData["Description"]" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="#" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="wrapper">
+        <header role="banner">
+            <nav class="container">
+                <ul>
+                    <li><a asp-controller="Post" asp-action="GetAllPost">Home</a></li>
+                    <li><a asp-controller="User" asp-action="GetAmountOfCommentsByUserId">Comments by userId</a></li>
+                    <li><a asp-controller="User" asp-action="AllComments">All Comments</a></li>
+                    <li><a asp-controller="User" asp-action="CompletedTodos">Completed todos</a></li>
+                    <li><a asp-controller="User" asp-action="SortedUsers">Sorted users</a></li>
+                    <li><a asp-controller="User" asp-action="UserInformation">User information</a></li>
+                    <li><a asp-controller="User" asp-action="PostInformation">Post information</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="container">
+            <h1>@ViewData["Title"]</h1>
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        @*<div class="container">
+            <span>&copy; @DateTime.Now.Year - BAS_ASP</span>
+        </div>*@
+    </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

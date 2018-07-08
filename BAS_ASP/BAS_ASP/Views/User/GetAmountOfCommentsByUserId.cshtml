@@ -1,0 +1,44 @@
+﻿@model List<BAS_ASP.DTO.PostCommentsDTO>
+@{
+    ViewData["Title"] = "Amount of comments ";
+    ViewData["Description"] = "Amount of comments by user id";
+}
+
+@using (Html.BeginForm())
+{
+    <p>
+        User id: @Html.TextBox("id") <br />
+        <input class="btn btn-dark mt-3" type="submit" value="Search" />
+    </p>
+}
+
+@foreach (var p in Model)
+{
+    <table class="table table-striped mb-4">
+        <tr>
+            <th> Post </th>
+            <td>
+                <div>                    
+                         @Html.ActionLink(@p.post.title, "Index", "Post", new { @p.post.id })
+                </div>
+                <div>
+                    @p.post.body
+                </div>
+                <div>
+                    <i class="fas fa-heart"></i>
+                    @p.post.likes
+                </div>
+                <div>
+                    @p.post.createdAt
+                </div>
+
+            </td>
+        </tr>
+
+        <tr>
+            <th> Ammoubt of comments </th>
+            <td> @p.amountOfComments </td>
+</tr>
+    </table>
+}
+

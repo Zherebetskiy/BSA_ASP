@@ -1,0 +1,13 @@
+﻿@model User
+@{
+    ViewData["Title"] = "User Detail";
+    ViewData["Description"] = "Detail of user";
+}
+
+<div>
+        <img src=@Model.avatar alt="avatar" />
+
+        <h2 class="ml-2">@Model.name</h2> <br />
+        <span class="ml-2">@Model.createdAt</span>  
+
+</div>

@@ -1,0 +1,74 @@
+﻿@model List<BAS_ASP.DTO.PostDTO>
+@{
+    ViewData["Title"] = "Home page";
+    ViewData["Description"] = "The home page of my website";
+}
+
+@foreach (var post in Model)
+{
+    <div class="card mb-4">
+        <div>
+            <img src=@post.user.avatar alt="avatar" />
+            <span class="ml-2">@Html.ActionLink(@post.user.name, "Index", "User", new { @post.user.id })</span>
+
+        </div>
+
+        <div class="card-body">
+            <div class="card">
+                <h3 class="card-header">@post.title</h3>
+
+                <div class="card-body">
+                    @post.body
+                </div>
+
+                <div class="d-flex justify-content-between p-3 ">
+                    <div>
+                        <time>@post.createdAt</time>
+                    </div>
+                    <div>
+                        <i class="fas fa-heart"></i>
+                        @post.likes
+                    </div>
+                </div>
+                <div>
+                    <p>
+                        <button class="btn btn-primary ml-2" type="button" data-toggle="collapse" data-target=@string.Concat("#1", @post.id) aria-expanded="false" aria-controls="collapseTable">
+                            Comments
+                        </button>
+                    </p>
+                    <div class="collapse " id=@string.Concat("1", @post.id)>
+                        <div class="card card-body">
+                            @if (@post.comments != null)
+                            {
+                                    @foreach (var comment in @post.comments)
+                                    {
+                                     
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    @comment.body
+                                                </div>
+
+                                                <div class="d-flex justify-content-between p-3 ">
+                                                    <div>
+                                                        <time>@comment.createdAt</time>
+                                                    </div>
+                                                    <div>
+                                                        <i class="fas fa-heart"></i>
+                                                        @comment.likes
+                                                    </div>
+                                                </div>
+                                            </div>
+                                       
+                                    }                              
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @*Insert any script tags for this page here*@
+}

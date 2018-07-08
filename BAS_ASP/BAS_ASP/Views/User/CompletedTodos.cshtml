@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Todo>
+@{
+    ViewData["Title"] = "Completed todos";
+    ViewData["Description"] = "Get sers' all comments";
+}
+
+@using (Html.BeginForm())
+{
+    <p>
+        User id: @Html.TextBox("id") <br />
+        <input class="btn btn-dark mt-3" type="submit" value="Search" />
+    </p>
+}
+
+<table class="table table-striped">
+    <th>Id</th>
+    <th>Name</th>
+
+    @foreach (var todo in Model)
+    {
+        <tr>
+            <td>@todo.id</td>
+            <td>@Html.ActionLink(todo.name, "Index","Todo", new { @todo.id })</td>
+        </tr>
+
+    }
+</table>

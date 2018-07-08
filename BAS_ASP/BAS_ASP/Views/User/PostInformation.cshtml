@@ -1,0 +1,86 @@
+﻿@model BAS_ASP.DTO.PostInformationDTO
+@{
+    ViewData["Title"] = "Post information";
+    ViewData["Description"] = "Get sers' all comments";
+}
+
+
+@using (Html.BeginForm())
+{
+    <p>
+        User id: @Html.TextBox("id") <br />
+    </p>
+    <p>
+        Length: @Html.TextBox("length") <br />
+        <input class="btn btn-dark mt-3" type="submit" value="Search" />
+    </p>
+}
+
+
+@if (Model != null)
+{
+    <table  class="table table-striped">
+        <tr>
+            <th> Post </th>
+            <td>
+                <div>
+                    @Html.ActionLink(@Model.Post.title, "Index", "Post", new { @Model.Post.id })
+                </div>
+                <div>
+                    @Model.Post.body
+                </div>
+                <div>
+                    <i class="fas fa-heart"></i>
+                    @Model.Post.likes
+                </div>
+                <div>
+                    @Model.Post.createdAt
+                </div>
+                
+            </td>
+        </tr>
+@if (Model.LongerComment != null)
+{
+        <tr>
+            <th> Longer comment of post </th>
+            <td> 
+                <div>
+                   @Model.LongerComment.body
+                </div>
+                <div>
+                    <i class="fas fa-heart"></i>
+                   @Model.LongerComment.likes 
+                </div>
+                <div>
+                    @Model.LongerComment.createdAt
+                </div>
+            </td>
+        </tr>
+}
+@if (Model.LikerComment != null)
+{
+        <tr>
+            <th> liker comment of post </th>
+            <td>
+                <div>
+                    @Model.LikerComment.body
+                </div>
+                <div>
+                    <i class="fas fa-heart"></i>
+                    @Model.LikerComment.likes
+                </div>
+                <div>
+                    @Model.LikerComment.createdAt
+                </div>  
+            </td>
+        </tr>
+}
+        <tr>
+            <th>Amount of comments</th>
+            <td>
+                @Model.AmountOfComments
+            </td>
+        </tr>
+    </table>
+}
+

@@ -1,0 +1,28 @@
+﻿@model Post
+@{
+    ViewData["Title"] = "Post Detail";
+    ViewData["Description"] = "Detail of post";
+}
+
+<div class="card">
+    <h3 class="card-header">@Model.title</h3>
+
+    <div class="card-body">
+        @Model.body
+    </div>
+
+    <div class="d-flex justify-content-between p-3 ">
+        <div>
+            <time>@Model.createdAt</time>
+        </div>
+        <div>
+            <i class="fas fa-heart"></i>
+            @Model.likes
+        </div>
+    </div>
+
+
+ </div>
+
+
+

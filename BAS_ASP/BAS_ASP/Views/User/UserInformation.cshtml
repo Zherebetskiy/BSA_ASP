@@ -1,0 +1,96 @@
+﻿@model BAS_ASP.DTO.UserInformationDTO
+@{
+    ViewData["Title"] = "User information";
+    ViewData["Description"] = "Get sers' all comments";
+}
+
+@using (Html.BeginForm())
+{
+    <p>
+        User id: @Html.TextBox("id") <br />
+    </p>
+    <p>
+        Length: @Html.TextBox("length") <br />
+        <input class="btn btn-dark mt-3" type="submit" value="Search" />
+    </p>
+}
+
+@if (Model != null)
+{
+    <table class="table table-striped">
+        <tr>
+            <th> User </th>
+            <td class="d-flex">
+                <img src=@Model.User.avatar class="img-circle" alt="avatar" />
+                <div class="p-3">
+                    <div>
+                        @Model.User.name
+                    </div>
+                    <div>
+                        @Model.User.createdAt
+                    </div>
+                </div>
+
+
+            </td>
+        </tr>
+        <tr>
+            <th> Last post </th>
+            <td>
+                <div>           
+                    @Html.ActionLink(@Model.LastPost.title, "Index", "Post", new { @Model.LastPost.id })
+                </div>
+                <div>
+                    @Model.LastPost.body
+                    </div>
+                <div>
+                    <i class="fas fa-heart"></i>
+                    @Model.LastPost.likes
+                    </div>
+</td>
+        </tr>
+        <tr>
+            <th> Amount of comment</th>
+            <td>
+                @Model.AmountOfComm
+            </td>
+        </tr>
+        <tr>
+            <th>Uncompleted tasks</th>
+            <td>
+                @Model.UncompletedTasks
+            </td>
+        </tr>
+        <tr>
+            <th>Popular post by comments </th>
+            <td>
+                <div>
+                    @Html.ActionLink(@Model.PopularPostByComm.title, "Index", "Post", new { @Model.LastPost.id })
+                </div>
+                <div>
+                    @Model.PopularPostByComm.body
+                </div>
+                <div>
+                    <i class="fas fa-heart"></i>
+                    @Model.PopularPostByComm.likes
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th>Popular post by likes </th>
+            <td>
+                <div>
+                    @Html.ActionLink(@Model.PopularPostByLikes.title, "Index", "Post", new { @Model.LastPost.id })
+                </div>
+                <div>
+                    @Model.PopularPostByLikes.body
+                </div>
+                <div>
+                    <i class="fas fa-heart"></i>
+                    @Model.PopularPostByLikes.likes
+                </div>
+            </td>
+        </tr>
+    </table>
+}
+

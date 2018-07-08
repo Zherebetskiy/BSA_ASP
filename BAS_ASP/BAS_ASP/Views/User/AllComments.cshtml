@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Comment>
+@{
+    ViewData["Title"] = "Users' comments";
+    ViewData["Description"] = "Get sers' all comments";
+}
+
+@using (Html.BeginForm())
+{
+    <p>
+        User id: @Html.TextBox("id") <br />
+    </p>
+    <p>
+        Length: @Html.TextBox("length") <br />
+        <input class="btn btn-dark mt-3" type="submit" value="Search" />
+    </p>
+} 
+
+<table class="table table-striped">
+    <th>Created at</th>
+    <th>Body</th>
+    <th>Likes</th>
+
+    @foreach (var comment in Model)
+    {
+        <tr>
+            <td>@comment.createdAt</td>
+            <td>@comment.body</td>
+            <td>@comment.likes</td>
+    </tr>
+
+    }
+</table>
+

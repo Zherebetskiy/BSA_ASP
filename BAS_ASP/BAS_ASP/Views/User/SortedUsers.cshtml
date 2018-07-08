@@ -1,0 +1,92 @@
+﻿@model IEnumerable<User>
+@{
+    ViewData["Title"] = "";
+    ViewData["Description"] = "The home page of my website";
+}
+
+<table class="table table-striped">
+    <tr>
+        <th>ID</th>
+        <th>CreatedAt</th>
+        <th>Name</th>
+        <th>Todos</th>
+        <th>Posts</th>
+    </tr>
+        
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.id</td>
+            <td>@user.createdAt</td>
+            <td>@Html.ActionLink(@user.name, "Index", new { @user.id })</td>
+
+            <td>
+                <p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=@string.Concat("#", @user.id) aria-expanded="false" aria-controls="collapseTable">
+                        All todos
+                    </button>
+                </p>
+                <div class="collapse" id=@user.id>
+                    <div class="card card-body">
+                       <table class="table table-striped">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Created at</th>
+                                    <th>Name</th>
+                                    <th>Is completed</th>
+                                </tr>
+
+
+                                @foreach (var todo in @user.todos)
+                                {
+                                    <tr>
+                                        <td>@todo.id</td>
+                                        <td>@todo.createdAt</td>
+                                        <td>@Html.ActionLink(@todo.name, "Index","Todo", new { @todo.id })</td>
+                                        <td>@todo.isComplete</td>
+                                    </tr>
+                                }
+                       </table>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=@string.Concat("#1", @user.id) aria-expanded="false" aria-controls="collapseTable">
+                        All posts
+                    </button>
+                </p>
+                <div class="collapse" id=@string.Concat("1", @user.id)>
+                    <div class="card card-body">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Id</th>
+                                <th>Created at</th>
+                                <th>Title</th>
+                                <th>Body</th>
+                                <th>Likes</th>
+                            </tr>
+
+
+                            @foreach (var post in @user.posts)
+                            {
+                                <tr>
+                                    <td>@post.id</td>
+                                    <td>@post.createdAt</td>
+                                    <td>>@Html.ActionLink(@post.title, "Index", "Post", new { @post.id })</td>
+                                    <td>@post.body</td>
+                                    <td>@post.likes</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </td>
+
+        </tr>
+    }
+</table>
+@section Scripts {
+    @*Insert any script tags for this page here*@
+}

@@ -1,0 +1,16 @@
+﻿@model Todo
+@{
+    ViewData["Title"] = "Todo Detail";
+    ViewData["Description"] = "Detail of todo";
+}
+
+<table  class="table table-striped">
+    <th>Created at</th>
+    <th>Name</th>
+    <th>Is completed</th>
+        <tr>
+            <td>@Model.createdAt</td>
+            <td>@Model.name</td>
+            <td>@Model.isComplete</td>
+        </tr>
+</table>
